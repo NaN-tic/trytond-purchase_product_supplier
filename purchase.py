@@ -10,10 +10,11 @@ class PurchaseLine:
     __metaclass__ = PoolMeta
     __name__ = 'purchase.line'
 
-    supplier_product_code = fields.Function(fields.Char('Supplier Product Code'),
+    supplier_product_code = fields.Function(
+        fields.Char('Supplier Product Code'),
         'on_change_with_supplier_product_code')
 
-    @fields.depends('product', '_parent_purchase.party')
+    @fields.depends('product', '_parent_purchase.party', 'purchase')
     def on_change_with_supplier_product_code(self, name=None):
         if self.purchase and self.product:
             for psupplier in self.product.product_suppliers:

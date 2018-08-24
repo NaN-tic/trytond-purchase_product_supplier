@@ -6,8 +6,7 @@ from trytond.pool import PoolMeta
 __all__ = ['PurchaseLine']
 
 
-class PurchaseLine:
-    __metaclass__ = PoolMeta
+class PurchaseLine(metaclass=PoolMeta):
     __name__ = 'purchase.line'
 
     supplier_product_code = fields.Function(
